@@ -1,3 +1,14 @@
 spring:
   application:
     name: expenseTracker
+  datasource:
+    url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?user=postgres.nsrbcsnlnarygmeasotw&password=D@EvZ4SidcYKD%26P
+    username: postgres.nsrbcsnlnarygmeasotw
+    password: D@EvZ4SidcYKD%26P
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
