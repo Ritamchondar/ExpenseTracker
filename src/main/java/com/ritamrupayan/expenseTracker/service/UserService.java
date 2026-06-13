@@ -41,6 +41,6 @@ public class UserService {
 				.userPassword(request.getUserPassword())
 				.build();
 		
-		return userRepository.findByUserMailAndUserPassword(user);
+		return userRepository.findByUserMailAndUserPassword(user.getUserMail(), user.getUserPassword());
 	}
 }

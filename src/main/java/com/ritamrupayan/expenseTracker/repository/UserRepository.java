@@ -12,5 +12,5 @@ import com.ritamrupayan.expenseTracker.model.User;
 public interface UserRepository extends JpaRepository<User, UUID> {
 	Optional<User> findByUserMail(String userMail);
 	boolean existsByUserMail(String userMail);
-	User findByUserMailAndUserPassword(User user);
+	User findByUserMailAndUserPassword(String userMail, String userPassword);
 }
