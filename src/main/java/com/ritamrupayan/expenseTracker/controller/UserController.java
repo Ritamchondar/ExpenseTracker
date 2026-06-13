@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ritamrupayan.expenseTracker.dto.UserCreateRequest;
 import com.ritamrupayan.expenseTracker.dto.UserLoginRequest;
+import com.ritamrupayan.expenseTracker.dto.UserUpdatePasswordRequest;
 import com.ritamrupayan.expenseTracker.model.User;
 import com.ritamrupayan.expenseTracker.service.UserService;
 
@@ -32,4 +33,10 @@ public class UserController {
 		User loggedUser = userService.loginUser(request);
 		return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
+    
+    @PostMapping("/updatePassword")
+	public ResponseEntity<String> updatePassword(@RequestBody UserUpdatePasswordRequest request) {
+		User updatePassword = userService.updatePassword(request);
+		return ResponseEntity.ok("Password updated successfully")	;
+	}
 }

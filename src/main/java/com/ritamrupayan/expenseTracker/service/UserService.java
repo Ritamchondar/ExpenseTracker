@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.ritamrupayan.expenseTracker.dto.UserCreateRequest;
 import com.ritamrupayan.expenseTracker.dto.UserLoginRequest;
+import com.ritamrupayan.expenseTracker.dto.UserUpdatePasswordRequest;
 import com.ritamrupayan.expenseTracker.model.User;
 import com.ritamrupayan.expenseTracker.repository.UserRepository;
 
@@ -42,5 +43,14 @@ public class UserService {
 				.build();
 		
 		return userRepository.findByUserMailAndUserPassword(user.getUserMail(), user.getUserPassword());
+	}
+
+	public User updatePassword(UserUpdatePasswordRequest request) {
+		User user = userRepository.findByUserMail(request.getEmail());
+		if (user == null) {
+			throw new IllegalArgumentException("User not found with email: " + request.getEmail());
+		}
+		user.setUserPassword(request.getNewPassword());
+		return userRepository.save(user);
 	}
 }
