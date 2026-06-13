@@ -3,6 +3,7 @@ package com.ritamrupayan.expenseTracker.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -36,4 +37,10 @@ public class Expense {
 
     @Column(name = "expense_operation_total_balance", precision = 19, scale = 4)
     private BigDecimal totalBalance;
+    
+    @Column(name = "expense_name", nullable = false, length = 255)
+    private String expenseName;
+    
+    @Column(name = "expense_date", nullable = false)
+    private Date expenseDate;
 }
