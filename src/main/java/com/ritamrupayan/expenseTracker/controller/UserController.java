@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.ritamrupayan.expenseTracker.dto.UserCreateRequest;
+import com.ritamrupayan.expenseTracker.dto.UserLoginRequest;
 import com.ritamrupayan.expenseTracker.model.User;
 import com.ritamrupayan.expenseTracker.service.UserService;
 
@@ -23,5 +24,12 @@ public class UserController {
     public ResponseEntity<User> registerUser(@Valid @RequestBody UserCreateRequest request) {
         User createdUser = userService.createUser(request);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody UserLoginRequest request){
+    	
+		User loggedUser = userService.loginUser(request);
+		return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 }

@@ -3,6 +3,7 @@ package com.ritamrupayan.expenseTracker.service;
 import org.springframework.stereotype.Service;
 
 import com.ritamrupayan.expenseTracker.dto.UserCreateRequest;
+import com.ritamrupayan.expenseTracker.dto.UserLoginRequest;
 import com.ritamrupayan.expenseTracker.model.User;
 import com.ritamrupayan.expenseTracker.repository.UserRepository;
 
@@ -32,4 +33,14 @@ public class UserService {
         // 3. Save and return the created user
         return userRepository.save(newUser);
     }
+
+	public User loginUser(UserLoginRequest request) {
+		
+		User user = User.builder()
+				.userMail(request.getUserMail())
+				.userPassword(request.getUserPassword())
+				.build();
+		
+		return userRepository.findByUserMailAndUserPassword(user);
+	}
 }
