@@ -39,13 +39,13 @@ public class ExpenseController {
 		return new ResponseEntity<>(createdExpense, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/getAllExpenses")
+	@PostMapping("/getAllExpenses")
 	public ResponseEntity<List<GetExpenseResponse>> getAllExpenses(@Valid @RequestBody AllExpensesRequest request){
 		 List<GetExpenseResponse> allExpenses = expenseService.getAllExpenses(request);
 		 return new ResponseEntity<>(allExpenses, HttpStatus.OK);	
 	}
 	
-	@GetMapping("/getExpensById")
+	@PostMapping("/getExpensById")
 	public ResponseEntity<GetExpenseResponse> getExpenseById(@Valid @RequestBody GetExpenseByIdRequest request){
 		 GetExpenseResponse specificExpense = expenseService.getExpenseById(request);
 		 return new ResponseEntity<>(specificExpense, HttpStatus.OK);
