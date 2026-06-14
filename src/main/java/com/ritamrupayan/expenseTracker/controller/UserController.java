@@ -29,9 +29,17 @@ public class UserController {
     
     @PostMapping("/login")
     public ResponseEntity<User> loginUser(@RequestBody UserLoginRequest request){
-    	
-		User loggedUser = userService.loginUser(request);
-		return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+        
+        User loggedUser = userService.loginUser(request);
+        
+        // Check if the user was actually found
+        if (loggedUser == null) {
+            // Return 401 Unauthorized instead of 200 OK
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        
+        // If successful, return the user data with 200 OK
+        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
     
     @PostMapping("/updatePassword")
